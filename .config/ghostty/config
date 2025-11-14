@@ -1,10 +1,16 @@
 #looking
 macos-titlebar-style = hidden
 window-decoration = none
-font-family=GoMono Nerd Font
-font-size=28
 theme=GitHub Dark Colorblind
 
 #keybinds
 keybind = ctrl+shift+k=scroll_page_fractional:-0.5
 keybind = ctrl+shift+j=scroll_page_fractional:0.5
+# MacOS
+clipboard-read = allow
+clipboard-write = allow
+copy-on-select = false
+#font
+font-family=GoMono Nerd Font
+font-size=28
+

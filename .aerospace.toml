@@ -4,13 +4,6 @@
 # You can use it to add commands that run after login to macOS user session.
 # 'start-at-login' needs to be 'true' for 'after-login-command' to work
 # Available commands: https://nikitabobko.github.io/AeroSpace/commands
-after-login-command = [
-  'exec-and-forget open -a Spotify',
-  'exec-and-forget open -a Telegram',
-  'exec-and-forget open -a Safari',
-  'exec-and-forget open -a ChatGPT',
-  'exec-and-forget open -a Emacs'
-]
 
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
@@ -18,7 +11,7 @@ after-login-command = [
 after-startup-command = []
 
 # Start AeroSpace at login
-start-at-login = true 
+start-at-login = true
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = true
@@ -47,7 +40,7 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 # You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
 # Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
 # Also see: https://nikitabobko.github.io/AeroSpace/goodies#disable-hide-app
-automatically-unhide-macos-hidden-apps = true 
+automatically-unhide-macos-hidden-apps = true
 
 
 #ADDED STUFF
@@ -191,10 +184,6 @@ run = ['layout tiling', 'move-node-to-workspace 3']
 
 [[on-window-detected]]
 if.app-id = 'com.openai.chat'
-run = ['layout tiling', 'move-node-to-workspace 4']
-
-[[on-window-detected]]
-if.app-id = 'org.gnu.Emacs'
 run = ['layout tiling', 'move-node-to-workspace 4']
 
 
