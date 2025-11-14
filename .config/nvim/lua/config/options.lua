@@ -4,6 +4,8 @@
 
 -- vim
 vim.opt.relativenumber = false
+vim.opt.gdefault = true
+vim.lsp.semantic_tokens.enable = true
 
 --python
 vim.g.lazyvim_python_lsp = "basedpyright"
