@@ -1,0 +1,13 @@
+[window]
+decorations = "buttonless"
+padding.x = 8
+padding.y = 8
+
+[font]
+normal.family = "FiraCode Nerd Font"
+normal.style = "Regular"
+bold.family = "FiraCode Nerd Font"
+bold.style = "Bold"
+italic.family = "FiraCode Nerd Font"
+italic.style = "Italic"
+size = 32.0
