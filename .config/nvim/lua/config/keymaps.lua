@@ -9,3 +9,4 @@ vim.keymap.set("n", "<S-l>", "<Cmd>bnext<CR>", { silent = true, desc = "Next buf
 vim.keymap.set({ "i", "c", "t" }, "<C-j>", "<C-n>", { remap = true, silent = true })
 vim.keymap.set({ "i", "c", "t" }, "<C-k>", "<C-p>", { remap = true, silent = true })
 vim.keymap.set({ "n", "i" }, "<D-s>", "<C-s>", { remap = true })
+vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { remap = true, silent = true, desc = "Exit Terminal Mode" })
