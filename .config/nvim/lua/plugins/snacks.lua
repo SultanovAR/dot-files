@@ -8,5 +8,14 @@ return {
         },
       },
     },
+    explorer = {
+      enabled = false,
+    },
+  },
+  keys = {
+    { "<leader>fe", false },
+    { "<leader>fE", false },
+    { "<leader>e", false },
+    { "<leader>E", false },
   },
 }
