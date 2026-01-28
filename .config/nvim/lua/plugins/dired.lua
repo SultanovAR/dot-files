@@ -5,6 +5,7 @@ return {
     cmd = { "Dired" },
     keys = {
       { "<leader>e", "<cmd>Dired<cr>", desc = "Dired" },
+      { "<leader>fe", "<cmd>Dired<cr>", desc = "Dired" },
     },
     opts = {
       keybinds = {

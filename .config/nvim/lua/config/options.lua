@@ -10,3 +10,15 @@ vim.lsp.semantic_tokens.enable = true
 --python
 vim.g.lazyvim_python_lsp = "basedpyright"
 vim.g.lazyvim_python_ruff = "ruff"
+
+vim.diagnostic.config({
+  float = {
+    focusable = false,
+    close_events = {
+      "BufLeave",
+      "CursorMoved",
+      "InsertEnter",
+      "FocusLost",
+    },
+  },
+})
