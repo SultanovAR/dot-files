@@ -10,7 +10,7 @@ return {
         underline = true,
         update_in_insert = false,
         severity_sort = true,
-        float = { border = "rounded", source = false, header = "", prefix = "" },
+        float = { border = "solid", source = false, header = "", prefix = "" },
       },
     },
 
@@ -29,7 +29,7 @@ return {
       })
 
       -- show a compact float for the current line, pinned to the top (Doom-like)
-      vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+      vim.api.nvim_create_autocmd({ "CursorHold" }, {
         group = grp,
         callback = function()
           local lnum = vim.api.nvim_win_get_cursor(0)[1] - 1
@@ -39,12 +39,12 @@ return {
 
           local ret = vim.diagnostic.open_float(nil, {
             scope = "line",
-            focus = false,
-            border = "rounded",
+            focusable = false,
+            border = "solid",
             source = false,
             header = "",
             prefix = "",
-            close_events = { "CursorMoved", "CursorMovedI", "InsertEnter", "BufLeave" },
+            close_events = { "CursorMoved", "InsertEnter", "BufLeave" },
             severity_sort = true,
           })
 
@@ -59,8 +59,44 @@ return {
 
       -- quick peek key, like “describe here”
       vim.keymap.set("n", "gl", function()
-        vim.diagnostic.open_float(nil, { scope = "cursor", focus = false, border = "rounded", source = false })
-      end, { desc = "Line diagnostics (float)" })
+        -- close all floating windows
+        for _, win in ipairs(vim.api.nvim_list_wins()) do
+          local cfg = vim.api.nvim_win_get_config(win)
+          if cfg.relative ~= "" then
+            pcall(vim.api.nvim_win_close, win, true)
+          end
+        end
+
+        local bufnr = vim.api.nvim_get_current_buf()
+
+        -- ensure diagnostics are enabled for this buffer
+        vim.diagnostic.enable(bufnr)
+
+        -- show diagnostics at cursor (or tell you there are none)
+        local cur = vim.api.nvim_win_get_cursor(0)
+        local lnum = cur[1] - 1
+        local diags = vim.diagnostic.get(bufnr, { lnum = lnum })
+
+        if #diags == 0 then
+          -- try cursor-scope (sometimes line-scope is empty)
+          diags = vim.diagnostic.get(bufnr, { lnum = lnum, col = cur[2] })
+        end
+
+        if #diags == 0 then
+          vim.notify("No diagnostics under cursor", vim.log.levels.INFO)
+          return
+        end
+
+        vim.diagnostic.open_float(nil, {
+          scope = "cursor",
+          focusable = false,
+          border = "solid",
+          source = false,
+          header = "",
+          prefix = "",
+          severity_sort = true,
+        })
+      end, { desc = "Diagnostics: reset floats + show at cursor" })
     end,
   },
 }
