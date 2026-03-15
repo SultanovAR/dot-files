@@ -1,5 +1,3 @@
-export PATH="$HOME/.emacs.d/bin:$PATH"
-
 . "$HOME/.local/bin/env"
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export PATH="$HOME/Library/Python/3.13/bin:$PATH"
