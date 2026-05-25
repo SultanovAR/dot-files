@@ -17,14 +17,14 @@ else
 fi
 
 # 2. Configure Custom Prompt
-# Using Zsh color syntax (%F{green}...%f)
-ZSH_PROMPT='PROMPT="%F{green}me@markov%f:%F{blue}%~%f$ "'
+# Using Zsh color syntax (%F{green}...%f); %m = short hostname (portable)
+ZSH_PROMPT='PROMPT="%F{green}me@%m%f:%F{blue}%~%f$ "'
 
-if ! grep -q 'me@markov' "$ZSHRC"; then
+if ! grep -q 'PROMPT="%F{green}me@' "$ZSHRC"; then
     echo "" >> "$ZSHRC"
     echo "# Custom Setup Prompt" >> "$ZSHRC"
     echo "$ZSH_PROMPT" >> "$ZSHRC"
-    echo "✅ Prompt updated to me@markov in Zsh."
+    echo "✅ Prompt updated to me@<host> in Zsh."
 else
     echo "⚡ Prompt already configured in Zsh."
 fi

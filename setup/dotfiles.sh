@@ -2,7 +2,7 @@
 echo ">>> Step 4: Installing Dotfiles from GitHub (Atlassian Method)..."
 
 REPO_URL="https://github.com/SultanovAR/dot-files.git"
-CFG_DIR="$HOME/.cfg"
+CFG_DIR="$HOME/.store_configs"
 
 # 1. Clone the bare repository
 if [ ! -d "$CFG_DIR" ]; then
@@ -50,7 +50,7 @@ fi
 config config --local status.showUntrackedFiles no
 
 # 6. Add the alias to your shell configs so you can use 'config add', 'config commit', etc.
-ALIAS_CMD="alias config='/usr/bin/git --git-dir=\$HOME/.cfg/ --work-tree=\$HOME'"
+ALIAS_CMD="alias config='/usr/bin/git --git-dir=\$HOME/.store_configs/ --work-tree=\$HOME'"
 
 # Append to Bash
 if [ -f "$HOME/.bashrc" ]; then
