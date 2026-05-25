@@ -10,6 +10,11 @@ keybind = ctrl+shift+j=scroll_page_fractional:0.5
 clipboard-read = allow
 clipboard-write = allow
 copy-on-select = false
+# Shell integration (zsh) for prompt marks, working-dir reporting, etc.
+shell-integration = zsh
+shell-integration-features = cursor,sudo,title
+# Scrollback large enough for long tmux sessions and command output
+scrollback-limit = 1000000
 #font
 font-family=GoMono Nerd Font
 font-size=28
