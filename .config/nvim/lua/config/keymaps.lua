@@ -12,6 +12,15 @@ vim.keymap.set({ "n", "i" }, "<D-s>", "<C-s>", { remap = true })
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { remap = true, silent = true, desc = "Exit Terminal Mode" })
 vim.keymap.set({ "n" }, "<leader>z", "<Cmd>ZenMode<CR>", { remap = true, silent = true, desc = "Enter/Exit Zen mode" })
 
+vim.keymap.set("n", "gl", function()
+  vim.diagnostic.open_float(nil, {
+    scope = "line",
+    focusable = true,
+    border = "rounded",
+    source = false,
+  })
+end, { desc = "Show diagnostics" })
+
 vim.keymap.set("n", "<leader>gl", function()
   for _, win in ipairs(vim.api.nvim_list_wins()) do
     local config = vim.api.nvim_win_get_config(win)
