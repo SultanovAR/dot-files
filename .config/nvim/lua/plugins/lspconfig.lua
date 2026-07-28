@@ -3,6 +3,11 @@ return {
   opts = {
     servers = {
       mojo = {},
+      ["*"] = {
+        keys = {
+          { "<c-k>", false, mode = "i" },
+        },
+      },
     },
     diagnostics = {
       virtual_text = false,

@@ -24,19 +24,22 @@ return {
       ["<Tab>"] = { "select_and_accept", "fallback" },
     })
 
-    -- Source priority: LSP wins over buffer/word matches. Buffer suggestions
-    -- were outranking slower LSP responses, so dotted contexts (e.g. `std.`)
-    -- showed nearby buffer words instead of module symbols.
+    -- Drop standalone snippet source: it returned instantly while LSP was
+    -- warming and locked the selection before LSP items arrived (user saw
+    -- dateDMY/dateMDY when typing `from std.at`). LSP delivers its own
+    -- snippet items via completionItem.snippetSupport, so nothing real lost.
+    -- Keep buffer at neutral offset so recent words still appear when LSP
+    -- has no matches.
     opts.sources = vim.tbl_deep_extend("force", opts.sources or {}, {
-      default = { "lsp", "path", "snippets", "buffer" },
+      default = { "lsp", "path", "buffer" },
       providers = {
-        lsp = {
-          score_offset = 100,
-        },
-        buffer = {
-          score_offset = -10,
-          min_keyword_length = 4,
-        },
+        -- async=true: don't block menu while LSP responds. Items stream in
+        -- and re-sort (score_offset=100 puts LSP top once it arrives).
+        -- Without this, slow/isIncomplete LSP responses cause buffer-only
+        -- menu on every keystroke (see blink issue #543).
+        lsp = { score_offset = 100, async = true },
+        path = { score_offset = 5 },
+        buffer = { score_offset = 0 },
       },
     })
 
