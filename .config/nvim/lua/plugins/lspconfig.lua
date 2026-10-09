@@ -6,7 +6,6 @@ return {
       ["*"] = {
         keys = {
           { "<c-k>", false, mode = "i" },
-          { "<leader>cl", false }, -- LazyVim's "Lsp Info"; reused for diagnostics float
         },
       },
     },
@@ -24,13 +23,13 @@ return {
         },
       },
       float = {
-        focusable = false,
+        -- focusable: a second <leader>cd jumps into the float (like K K)
+        focusable = true,
         style = "minimal",
         border = "rounded",
         source = false,
         header = "",
         prefix = "",
-        close_events = { "InsertEnter", "FocusLost" },
       },
     },
   },
