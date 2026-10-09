@@ -32,6 +32,11 @@ vim.api.nvim_create_autocmd("CursorHold", {
       return
     end
 
+    -- Off unless toggled per buffer (<leader>ce in keymaps.lua).
+    if not vim.b.diag_float_auto then
+      return
+    end
+
     local lnum = vim.api.nvim_win_get_cursor(0)[1] - 1
     if #vim.diagnostic.get(0, { lnum = lnum }) == 0 then
       close_last_auto_win()

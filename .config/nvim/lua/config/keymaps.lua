@@ -12,14 +12,20 @@ vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { remap = true, silent = true, 
 vim.keymap.set({ "n" }, "<leader>z", "<Cmd>ZenMode<CR>", { remap = true, silent = true, desc = "Enter/Exit Zen mode" })
 
 
-vim.keymap.set("n", "gl", function()
+vim.keymap.set("n", "<leader>cl", function()
   vim.diagnostic.open_float(nil, {
-    scope = "line",
+    scope = "cursor",
     focusable = true,
     border = "rounded",
     source = false,
   })
 end, { desc = "Show diagnostics" })
+
+-- Per-buffer auto diagnostic float (CursorHold autocmd in autocmds.lua).
+vim.keymap.set("n", "<leader>ce", function()
+  vim.b.diag_float_auto = not vim.b.diag_float_auto
+  vim.notify("Diagnostic float: " .. (vim.b.diag_float_auto and "on" or "off"))
+end, { desc = "Toggle diagnostic float (buffer)" })
 
 vim.keymap.set("n", "<leader>gl", function()
   for _, win in ipairs(vim.api.nvim_list_wins()) do

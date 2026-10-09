@@ -6,6 +6,7 @@ return {
       ["*"] = {
         keys = {
           { "<c-k>", false, mode = "i" },
+          { "<leader>cl", false }, -- LazyVim's "Lsp Info"; reused for diagnostics float
         },
       },
     },
