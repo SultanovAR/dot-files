@@ -4,7 +4,7 @@ return {
     opts = {
       lsp = {
         progress = { enabled = false },
-        signature = { enabled = true },
+        signature = { enabled = true, auto_open = { enabled = false } },
         hover = { silent = true },
         override = {
           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
